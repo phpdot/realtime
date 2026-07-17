@@ -1,0 +1,54 @@
+{
+    "name": "phpdot/realtime",
+    "description": "Real-time WebSocket engine — rooms, channels, presence, broadcast. Transport-agnostic: depends only on phpdot/contracts, never a concrete server.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Omar Hamdan",
+            "email": "omar@phpdot.com"
+        }
+    ],
+    "keywords": ["websocket", "realtime", "rooms", "channels", "presence", "broadcast", "swoole"],
+    "require": {
+        "php": ">=8.5",
+        "ext-swoole": ">=6.2",
+        "phpdot/contracts": "^0.1",
+        "psr/http-message": "^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.94",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^13.0",
+        "swoole/ide-helper": "^6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPdot\\Realtime\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PHPdot\\Realtime\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "analyse": "phpstan analyse --memory-limit=256M",
+        "cs-fix": "php-cs-fixer fix",
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "check": [
+            "@test",
+            "@analyse",
+            "@cs-check"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "support": {
+        "source": "https://github.com/phpdot/realtime",
+        "issues": "https://github.com/phpdot/monorepo/issues"
+    }
+}
