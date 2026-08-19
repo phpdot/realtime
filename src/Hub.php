@@ -162,7 +162,7 @@ final class Hub
      *
      * @return void
      */
-    public function touch(int $fd, ?float $at = null): void
+    public function touch(int $fd, null|float $at = null): void
     {
         if (isset($this->sockets[$fd])) {
             $this->lastSeen[$fd] = $at ?? microtime(true);
@@ -182,7 +182,7 @@ final class Hub
      *
      * @return int Number of connections reaped.
      */
-    public function heartbeat(float $idleTimeout, ?float $now = null): int
+    public function heartbeat(float $idleTimeout, null|float $now = null): int
     {
         $now ??= microtime(true);
         $stale = [];
@@ -282,7 +282,7 @@ final class Hub
      *
      * @return ?Socket
      */
-    public function socket(int $fd): ?Socket
+    public function socket(int $fd): null|Socket
     {
         return $this->sockets[$fd] ?? null;
     }
@@ -321,11 +321,11 @@ final class Hub
      *
      * @return void
      */
-    public function joinRooms(int $fd, array $rooms, ?array $user): void
+    public function joinRooms(int $fd, array $rooms, null|array $user): void
     {
         foreach ($rooms as $room) {
             $members = $this->adapter->members([$room]);
-            $roster = array_map(static fn(array $m): ?array => $m['user'], $members);
+            $roster = array_map(static fn(array $m): null|array => $m['user'], $members);
             $this->adapter->send($fd, Event::encode('presence:here', ['members' => $roster, 'room' => $room]));
 
             $this->adapter->add($fd, [$room], $user);
@@ -351,7 +351,7 @@ final class Hub
      *
      * @return void
      */
-    public function subscribeRooms(int $fd, array $rooms, ?array $user): void
+    public function subscribeRooms(int $fd, array $rooms, null|array $user): void
     {
         $this->adapter->add($fd, $rooms, $user);
     }
@@ -378,7 +378,7 @@ final class Hub
      *
      * @return void
      */
-    public function leaveRooms(int $fd, array $rooms, ?array $user): void
+    public function leaveRooms(int $fd, array $rooms, null|array $user): void
     {
         foreach ($rooms as $room) {
             $this->adapter->broadcast(

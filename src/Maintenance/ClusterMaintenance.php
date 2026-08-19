@@ -96,7 +96,7 @@ final class ClusterMaintenance
      *
      * @return int
      */
-    public function reap(?Closure $yield = null): int
+    public function reap(null|Closure $yield = null): int
     {
         return $this->adapter instanceof MultiNodeAdapter
             ? $this->adapter->reap($this->reapLockTtlSeconds, $yield)

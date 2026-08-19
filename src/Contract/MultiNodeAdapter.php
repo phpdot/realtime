@@ -46,7 +46,7 @@ interface MultiNodeAdapter extends Adapter
      *
      * @return int
      */
-    public function reap(int $lockTtlSeconds = 30, ?Closure $yield = null): int;
+    public function reap(int $lockTtlSeconds = 30, null|Closure $yield = null): int;
 
     /**
      * Publish this node's stats snapshot to shared Redis, under a node-scoped key, with the

@@ -34,7 +34,7 @@ final class FakeRedis implements RedisCommands
         unset($this->hashes[$key][$field]);
     }
 
-    public function hGet(string $key, string $field): ?string
+    public function hGet(string $key, string $field): null|string
     {
         return $this->hashes[$key][$field] ?? null;
     }
@@ -104,7 +104,7 @@ final class FakeRedis implements RedisCommands
             || array_key_exists($key, $this->sets);
     }
 
-    public function get(string $key): ?string
+    public function get(string $key): null|string
     {
         return $this->strings[$key] ?? null;
     }

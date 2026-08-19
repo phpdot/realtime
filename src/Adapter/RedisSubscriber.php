@@ -31,7 +31,7 @@ final class RedisSubscriber
     /**
      * The in-flight subscription, so stop() can close its socket to unblock a parked subscribe.
      */
-    private ?RedisSubscription $current = null;
+    private null|RedisSubscription $current = null;
 
     /**
      * Run the blocking Redis SUBSCRIBE loop on a dedicated connection, feeding messages to the adapter.

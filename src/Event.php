@@ -39,7 +39,7 @@ final class Event
      *
      * @return array{event: string, channel: string|null, data: mixed, ack: int|null}|null Null if malformed.
      */
-    public static function decode(string $raw): ?array
+    public static function decode(string $raw): null|array
     {
         $decoded = json_decode($raw, true);
 

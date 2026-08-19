@@ -49,7 +49,7 @@ interface RedisCommands
      *
      * @return ?string
      */
-    public function hGet(string $key, string $field): ?string;
+    public function hGet(string $key, string $field): null|string;
 
     /**
      * Get every field/value of a HASH.
@@ -156,5 +156,5 @@ interface RedisCommands
      *
      * @return ?string
      */
-    public function get(string $key): ?string;
+    public function get(string $key): null|string;
 }

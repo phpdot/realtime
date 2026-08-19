@@ -82,7 +82,7 @@ final class RedisAdapter implements MultiNodeAdapter
         private readonly string $prefix = 'rt',
     ) {}
 
-    public function add(int $fd, array $rooms, ?array $user = null): void
+    public function add(int $fd, array $rooms, null|array $user = null): void
     {
         $redis = $this->redis();
         $member = $this->member($fd);
@@ -298,7 +298,7 @@ final class RedisAdapter implements MultiNodeAdapter
         return count($seen);
     }
 
-    public function userOf(int $fd): ?array
+    public function userOf(int $fd): null|array
     {
         $userData = $this->redis()->hGet($this->connKey($fd), 'userData') ?? '';
         if ($userData === '') {
@@ -375,7 +375,7 @@ final class RedisAdapter implements MultiNodeAdapter
      *
      * @return array<string, int|float|string>|null
      */
-    private function decodeStats(?string $json): ?array
+    private function decodeStats(null|string $json): null|array
     {
         if ($json === null) {
             return null;
@@ -428,7 +428,7 @@ final class RedisAdapter implements MultiNodeAdapter
      *
      * @return int Connections reaped.
      */
-    public function reap(int $lockTtlSeconds = 30, ?Closure $yield = null): int
+    public function reap(int $lockTtlSeconds = 30, null|Closure $yield = null): int
     {
         $redis = $this->redis();
         $reaped = 0;
@@ -477,7 +477,7 @@ final class RedisAdapter implements MultiNodeAdapter
      *
      * @return int
      */
-    private function reapNode(RedisCommands $redis, string $nodeId, ?Closure $yield): int
+    private function reapNode(RedisCommands $redis, string $nodeId, null|Closure $yield): int
     {
         $connsKey = $this->nodeConnsKey($nodeId);
         $count = 0;

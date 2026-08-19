@@ -20,9 +20,9 @@ declare(strict_types=1);
  * write. Fine for human-paced rooms; a hot fan-in room needs the RedisAdapter.
  * - Presence dedups by fd, so one user across N tabs appears N times.
  *
- * For multi-node (rooms/presence across instances), a RedisAdapter implementing
- * this same interface is the intended path (see README) — it is not yet built, so
- * this package is single-node for v1.
+ * For multi-node (rooms/presence across instances), RedisAdapter implements
+ * this same interface — hand it to the Hub instead of this adapter and rooms
+ * and presence live in Redis, shared across every instance.
  *
  * @author Omar Hamdan <omar@phpdot.com>
  * @license MIT
@@ -72,7 +72,7 @@ final class TableAdapter implements Adapter
         $this->rooms->create();
     }
 
-    public function add(int $fd, array $rooms, ?array $user = null): void
+    public function add(int $fd, array $rooms, null|array $user = null): void
     {
         $row = $this->fetch($this->connections, $fd);
         $currentRooms = $row !== null ? $this->decodeStringList($this->str($row, 'rooms')) : [];
@@ -228,7 +228,7 @@ final class TableAdapter implements Adapter
         return count($seen);
     }
 
-    public function userOf(int $fd): ?array
+    public function userOf(int $fd): null|array
     {
         $row = $this->fetch($this->connections, $fd);
         if ($row === null) {
@@ -278,7 +278,7 @@ final class TableAdapter implements Adapter
      *
      * @return array<mixed, mixed>|null
      */
-    private function fetch(Table $table, int|string $key): ?array
+    private function fetch(Table $table, int|string $key): null|array
     {
         $result = $table->get((string) $key);
 
@@ -313,7 +313,7 @@ final class TableAdapter implements Adapter
      *
      * @return void
      */
-    private function addToRoom(int $fd, string $room, ?array $user): void
+    private function addToRoom(int $fd, string $room, null|array $user): void
     {
         $row = $this->fetch($this->rooms, $room);
         $fds = $row !== null ? $this->decodeIntList($this->str($row, 'fds')) : [];

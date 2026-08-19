@@ -26,7 +26,7 @@ interface Adapter
      *
      * @return void
      */
-    public function add(int $fd, array $rooms, ?array $user = null): void;
+    public function add(int $fd, array $rooms, null|array $user = null): void;
 
     /**
      * Remove an fd from room(s).
@@ -93,7 +93,7 @@ interface Adapter
      *
      * @return array<mixed, mixed>|null
      */
-    public function userOf(int $fd): ?array;
+    public function userOf(int $fd): null|array;
 
     /**
      * Get all fds belonging to a userId.

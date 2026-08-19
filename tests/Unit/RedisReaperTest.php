@@ -36,7 +36,7 @@ final class RedisReaperTest extends TestCase
     }
 
     /** Register a second node with membership, then simulate its ungraceful death. */
-    private function crashNodeWith(string $nodeId, int $fd, array $rooms, ?array $user): void
+    private function crashNodeWith(string $nodeId, int $fd, array $rooms, null|array $user): void
     {
         $sender = new FakeSender();
         $dead = new RedisAdapter(fn(): FakeRedis => $this->redis, $sender, $nodeId);
