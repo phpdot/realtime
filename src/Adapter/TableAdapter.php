@@ -36,10 +36,19 @@ use Swoole\Table;
 
 final class TableAdapter implements Adapter
 {
+    /**
+     * @var Table<array<string, string>>
+     */
     private Table $connections;
 
+    /**
+     * @var Table<array<string, string>>
+     */
     private Table $users;
 
+    /**
+     * @var Table<array<string, string>>
+     */
     private Table $rooms;
 
     /**
@@ -273,10 +282,10 @@ final class TableAdapter implements Adapter
     /**
      * Read a row from a Swoole table by key, or null if absent.
      *
-     * @param Table $table
+     * @param Table<array<string, string>> $table
      * @param int|string $key
      *
-     * @return array<mixed, mixed>|null
+     * @return array<string, string>|null
      */
     private function fetch(Table $table, int|string $key): null|array
     {
@@ -286,6 +295,9 @@ final class TableAdapter implements Adapter
             return null;
         }
 
+        /**
+         * @var array<string, string> $result
+         */
         return $result;
     }
 
