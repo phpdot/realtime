@@ -13,7 +13,7 @@
     "require": {
         "php": ">=8.5",
         "ext-swoole": ">=6.2",
-        "phpdot/contracts": "^0.1",
+        "phpdot/contracts": "^0.2",
         "psr/http-message": "^2.0"
     },
     "require-dev": {
