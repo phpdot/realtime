@@ -1,6 +1,6 @@
 {
     "name": "phpdot/realtime",
-    "description": "Real-time WebSocket engine — rooms, channels, presence, broadcast. Transport-agnostic: depends only on phpdot/contracts, never a concrete server.",
+    "description": "Real-time WebSocket engine \u2014 rooms, channels, presence, broadcast. Transport-agnostic: depends only on phpdot/contracts, never a concrete server.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -9,11 +9,20 @@
             "email": "omar@phpdot.com"
         }
     ],
-    "keywords": ["websocket", "realtime", "rooms", "channels", "presence", "broadcast", "swoole"],
+    "keywords": [
+        "websocket",
+        "realtime",
+        "rooms",
+        "channels",
+        "presence",
+        "broadcast",
+        "swoole"
+    ],
     "require": {
-        "php": ">=8.5",
         "ext-swoole": ">=6.2",
-        "phpdot/contracts": "^0.2",
+        "php": ">=8.5",
+        "phpdot/contracts": "^0.3",
+        "psr/container": "^2.0",
         "psr/http-message": "^2.0"
     },
     "require-dev": {
@@ -21,7 +30,10 @@
         "phpstan/phpstan": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^13.0",
-        "swoole/ide-helper": "^6.0"
+        "swoole/ide-helper": "^6.0",
+        "phpdot/server": "^0.3",
+        "phpdot/container": "^0.3",
+        "phpdot/redis": "^0.3"
     },
     "autoload": {
         "psr-4": {
@@ -50,5 +62,10 @@
     "support": {
         "source": "https://github.com/phpdot/realtime",
         "issues": "https://github.com/phpdot/monorepo/issues"
+    },
+    "suggest": {
+        "phpdot/server": "Auto-starts the cluster relay and membership maintenance as ServerListeners (the Bridge classes); without it the host starts them itself.",
+        "phpdot/redis": "The Bridge adapters run the relay and maintenance over phpdot/redis connections (guarded at runtime); any client implementing the two ports works.",
+        "phpdot/container": "Autowires the singleton listener halves (the attributes stay inert until reflected)."
     }
 }

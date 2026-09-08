@@ -6,4 +6,6 @@ parameters:
     paths:
         - src
     scanFiles:
+        - vendor/swoole/ide-helper/src/swoole/Swoole/Coroutine.php
         - vendor/swoole/ide-helper/src/swoole/Swoole/Table.php
+        - vendor/swoole/ide-helper/src/swoole/Swoole/Timer.php

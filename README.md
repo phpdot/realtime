@@ -21,7 +21,8 @@ so it never names a concrete server. A pluggable adapter backs membership and pr
 |---|---|
 | PHP | `>= 8.5` |
 | `ext-swoole` | `>= 6.2` |
-| `phpdot/contracts` | `^0.2` |
+| `phpdot/contracts` | `^0.3` |
+| `psr/container` | `^2.0` |
 | `psr/http-message` | `^2.0` |
 
 ## Installation

@@ -72,7 +72,12 @@ final class RedisAdapter implements MultiNodeAdapter
      *
      * @param Closure(): RedisCommands $connect Yields a coroutine-safe command connection.
      * @param ConnectionSenderInterface $sender Pushes frames to a local connection by fd.
-     * @param string $nodeId Unique per server instance (must not contain ':').
+     * @param string $nodeId Unique per server INCARNATION — a restarted process must never
+     *                       reuse its predecessor's id, or its own expired entries become
+     *                       unreapable (reap never touches self). Derive it from something
+     *                       the restart changes: the server heartbeat's stable identity
+     *                       plus the master pid or boot time. A ':' is tolerated — the key
+     *                       parser splits on the LAST one.
      * @param string $prefix Key prefix namespacing this cluster's Redis keys.
      */
     public function __construct(
