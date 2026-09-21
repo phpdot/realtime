@@ -1,6 +1,6 @@
 {
     "name": "phpdot/realtime",
-    "description": "Real-time WebSocket engine \u2014 rooms, channels, presence, broadcast. Transport-agnostic: depends only on phpdot/contracts, never a concrete server.",
+    "description": "Real-time WebSocket engine — rooms, channels, presence, broadcast. Transport-agnostic: depends only on phpdot/contracts, never a concrete server.",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -21,7 +21,7 @@
     "require": {
         "ext-swoole": ">=6.2",
         "php": ">=8.5",
-        "phpdot/contracts": "^0.4",
+        "phpdot/contracts": "^0.5",
         "psr/container": "^2.0",
         "psr/http-message": "^2.0"
     },
@@ -31,9 +31,9 @@
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^13.0",
         "swoole/ide-helper": "^6.0",
-        "phpdot/server": "^0.4",
-        "phpdot/container": "^0.4",
-        "phpdot/redis": "^0.4"
+        "phpdot/server": "^0.5",
+        "phpdot/container": "^0.5",
+        "phpdot/redis": "^0.5"
     },
     "autoload": {
         "psr-4": {
